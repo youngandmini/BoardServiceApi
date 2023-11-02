@@ -46,7 +46,8 @@ public class PostService {
             throw new BadRequestException("잘못된 삭제 요청");
         }
         findPost.deletePost();
-        findPost.getComments().forEach(Comment::deleteComment);
+//        findPost.getComments().forEach(Comment::deleteComment);
+        commentRepository.bulkDeleteComment(postId);
     }
 
     public PostResponseDto findPost(Long postId) {
